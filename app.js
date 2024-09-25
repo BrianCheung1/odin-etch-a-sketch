@@ -23,8 +23,20 @@ function createGrid(size) {
       col.style.width = `${squareSize}px`
       col.style.height = `${squareSize}px`
       col.addEventListener("mouseover", () => {
-        col.classList.add("squarestyle")
+        if (!col.style.backgroundColor) {
+          col.style.backgroundColor =
+            "#" + Math.floor(Math.random() * 16777215).toString(16)
+        }
+        if (!col.style.opacity) {
+          col.style.opacity = 0.1
+        } else {
+          console.log("has opacity")
+          if (col.style.opacity < 1) {
+            col.style.opacity = parseFloat(col.style.opacity) + 0.1
+          }
+        }
       })
+
       row.appendChild(col)
     }
     container.appendChild(row)
